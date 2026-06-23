@@ -1,5 +1,4 @@
-```markdown
-# WireGuard Full-Tunnel VPN Setup
+# WireGuard Tunnel VPN Setup
 
 This repository contains the configuration guides, implementation notes, and production-ready templates for deploying a high-performance, full-tunnel VPN utilizing WireGuard.
 
@@ -180,13 +179,7 @@ curl ifconfig.me
 
 ## 4. Repository Deployment Templates
 
-To deploy using automated infrastructure configurations rather than manual interface routing commands, utilize the following raw templates located within the `configs/` directory.
+To deploy using automated infrastructure configurations rather than manual interface routing commands, utilize the raw templates located within the `configs/` directory:
 
-### `configs/server.conf.template`
-
-server[/configs/server.conf.template]
-```
-
-### `configs/client.conf.template`
-
-client[/configs/client.conf.template]
+*  [Server Configuration Template](./configs/server.conf.template)
+*  [Client Configuration Template](./configs/client.conf.template)
