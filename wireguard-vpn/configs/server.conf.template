@@ -1,0 +1,19 @@
+[Interface]
+# Private IP subnet for the VPN tunnel
+Address = <SERVER_TUNNEL_IP_WITH_SUBNET> # e.g., 10.10.10.1/28
+ListenPort = 41129
+
+# Paste the contents of /etc/wireguard/server_private.key here
+PrivateKey = <SERVER_PRIVATE_KEY>
+
+# Route traffic through NAT when interface comes up (Change eth0 if your WAN interface is named differently)
+PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/28 -o eth0 -j MASQUERADE; ufw route allow in on wg0 out on eth0
+# Clean up routing rules when interface goes down
+PostDown = iptables -t nat -D POSTROUTING -s 10.10.10.0/28 -o eth0 -j MASQUERADE; ufw route delete allow in on wg0 out on eth0
+
+### Client 1 ###
+[Peer]
+# Paste the contents of the client's public key here
+PublicKey = <CLIENT_PUBLIC_KEY>
+# Strict IP assignment for this specific client
+AllowedIPs = <CLIENT_TUNNEL_IP_ONLY> # e.g., 10.10.10.2/32

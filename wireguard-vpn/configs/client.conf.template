@@ -1,0 +1,17 @@
+[Interface]
+# The specific static IP allocated to this client by the server
+Address = <CLIENT_TUNNEL_IP_WITH_SUBNET> # e.g., 10.10.10.2/28
+# Paste the contents of your client_private.key here
+PrivateKey = <CLIENT_PRIVATE_KEY>
+# Recommended DNS resolver to prevent DNS leaks outside the tunnel
+DNS = 1.1.1.1
+
+[Peer]
+# Paste the server's public key here
+PublicKey = <SERVER_PUBLIC_KEY>
+# Server's Public WAN IP and WireGuard listening port
+Endpoint = <SERVER_PUBLIC_IP>:41129
+# 0.0.0.0/0 forces a "Full-Tunnel", routing ALL internet traffic through the VPN
+AllowedIPs = 0.0.0.0/0
+# Keeps the stateful firewall/NAT mappings alive on home routers
+PersistentKeepalive = 25
